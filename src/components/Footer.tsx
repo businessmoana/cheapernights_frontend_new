@@ -15,7 +15,7 @@ const Footer = () => {
           <FooterLogo className="md:w-[350px] md:h-[50px] w-[245px] h-[35px]" />
         </Link>
         <div className="flex md:flex-row flex-col md:gap-[60px] gap-[10px] justify-center items-center">
-          <div className="flex gap-5 text-sm font-semibold">
+          <div className="flex gap-[20px] text-sm font-semibold">
             <Link to="/" className="hover:underline">
               Home
             </Link>
@@ -53,9 +53,14 @@ const Footer = () => {
       </div>
       <div className="text-[13px] text-[#CED6E0] py-[15px] flex md:flex-row flex-col gap-[10px] md:justify-between justify-center items-center">
         <div>© 2025 Cheapernights.com. All rights reserved. </div>
-        <Link to="/term" className="hover:underline">
-          CTerms of Service Privacy Policy
-        </Link>
+        <div className="flex gap-3">
+          <Link to="/term-service" className="hover:underline">
+            Terms of Service
+          </Link>
+          <Link to="/privacy-policy" className="hover:underline">
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </footer>
   );

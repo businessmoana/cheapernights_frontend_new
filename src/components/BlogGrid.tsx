@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { motion } from "framer-motion";
 import blogPosts from "../constant/blogs";
 import GotQuestion from "./gotQuestion";
 
@@ -139,28 +140,35 @@ const BlogGrid: React.FC = () => {
 
   return (
     <div>
-      <div className="flex  gap-[30px] mb-[60px] flex-wrap justify-center">
+      <div className="flex gap-[30px] mb-[60px] flex-wrap justify-center">
         {currentPosts.map((post) => (
-          <Link
-            to={`/blog/${post.id}`}
+          <motion.div
             key={post.id}
-            className="overflow-hidden max-w-[430px] w-full"
+            className="overflow-hidden max-w-[420px] w-full"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-auto aspect-[430/300] object-cover rounded-[10px]"
-            />
-            <div className="mt-[30px] flex flex-col gap-[5px]">
-              <h3 className="text-xl text-[#57606F] font-semibold">
-                {post.title}
-              </h3>
-              <div className="text-[#FF4757] text-sm font-semibold">
-                {post.date}
+            <Link to={`/blog/${post.id}`}>
+              <motion.img
+                src={post.image}
+                alt={post.title}
+                className="w-full h-auto aspect-[430/300] object-cover rounded-[10px]"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              />
+              <div className="mt-[30px] flex flex-col gap-[5px]">
+                <h3 className="text-xl text-[#57606F] font-semibold">
+                  {post.title}
+                </h3>
+                <div className="text-[#FF4757] text-sm font-semibold">
+                  {post.date}
+                </div>
+                <p className="text-[#57606F] text-lg">{post.description}</p>
               </div>
-              <p className="text-[#57606F] text-lg">{post.description}</p>
-            </div>
-          </Link>
+            </Link>
+          </motion.div>
         ))}
       </div>
       <Pagination

@@ -7,6 +7,8 @@ import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import HelpPage from './pages/HelpPage';
 import ContactUsPage from './pages/ContactUsPage';
+import TermServicePage from './pages/TermServicePage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import PageNotFound from './components/PageNotFound';
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/blog/:id" element={<BlogPostPage />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/contact-us" element={<ContactUsPage />} />
+        <Route path="/term-service" element={<TermServicePage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>

@@ -5,4 +5,46 @@
 #root{
     overflow: hidden;
 }
-/* Custom global styles can be added below */
+
+.carousel-inner{
+    height: 100%;
+}
+
+.custom-carousel .carousel-control-prev,
+.custom-carousel .carousel-control-next {
+  position: absolute;
+  bottom: 20px; 
+  top: auto; 
+  transform: translateY(0); 
+  width: 30px;
+  height: 30px;
+}
+
+.custom-carousel .carousel-control-prev {
+  left: 20px; 
+}
+
+.custom-carousel .carousel-control-next {
+  right: 20px; 
+}
+
+
+.custom-carousel .carousel-indicators {
+  position: absolute;
+  bottom: 10px; 
+}
+
+.custom-carousel .carousel-indicators button {
+  width: 20px; 
+  height: 10px; 
+  background-color: white;
+  opacity: 1;
+  border: none;
+  border-radius: 3px;
+  margin: 0 5px; 
+}
+
+.custom-carousel .carousel-indicators button.active {
+  background-color: #FF4757; 
+  width: 40px; 
+}

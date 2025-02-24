@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import DetailSection from '../components/DetailSection';
@@ -9,7 +10,12 @@ import GoToTopButton from '../components/GoToTopButton';
 
 const MainPage: React.FC = () => {
     return (
-        <div className='w-screen'>
+        <motion.div 
+            className='w-screen'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
             <Navbar />
             <HeroSection />
             <DetailSection />
@@ -17,7 +23,7 @@ const MainPage: React.FC = () => {
             <FAQSection />
             <Footer />
             <GoToTopButton/>
-        </div>
+        </motion.div>
     );
 };
 
