@@ -4,6 +4,7 @@
 
 #root{
     overflow: hidden;
+    position: relative;
 }
 
 .carousel-inner{

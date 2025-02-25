@@ -9,8 +9,8 @@ const hostFaqImageUrl = "/assets/images/host-faq.png";
 import faqs from "../constant/faqs";
 
 const HelpPage = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const toggleFAQ = (index: number) => {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
   return (

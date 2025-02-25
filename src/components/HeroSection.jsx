@@ -1,12 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const HeroImageUrl = "/assets/images/hero-image.png";
 const SiteListImageUrl = "/assets/images/site-list.png";
 const SiteListMobileImageUrl = "/assets/images/site-list-mobile.png";
 import SearchIcon from "./icons/searchIcon";
+import axios from "axios";
+import { useSearchContext } from "../context/SearchContext";
+import { useNavigate } from "react-router-dom";
 
-const HeroSection: React.FC = () => {
+const HeroSection = () => {
+  const navigate = useNavigate()
+  const [ipAddress, setIpAddress] = useState(null);
+  const [url, setUrl] = useState("");
+  const { setIsLoading, setError, setResult } = useSearchContext(); 
+  const handleInputChange = (e) => {
+    setUrl(e.target.value);
+  };
+
+  useEffect(() => {
+    const fetchIpAddress = async () => {
+      try {
+        const response = await fetch("https://api.ipify.org?format=json");
+        const data = await response.json();
+        setIpAddress(data.ip);
+      } catch (error) {
+        console.error("Error fetching IP address:", error);
+      }
+    };
+
+    fetchIpAddress();
+  }, []);
+
+  const handleSubmit = async (e) => {
+    if (url) {
+      setIsLoading(true);
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URL}/googleSearch`,
+          {
+            searchText: url,
+            ipAddress: ipAddress,
+          }
+        );
+        if (response.data.status == "success") {
+          setResult(response.data);
+          navigate("/searchResult");
+        } else {
+          setResult(null);
+        }
+        setError('');
+        setIsLoading(false);
+      } catch (error) {
+        setError("There was an error making the request"); // Set error message
+        setIsLoading(false);
+        console.error("There was an error making the request:", error);
+      }
+    }
+  };
+
   return (
     <div className="md:mt-[90px] mt-[60px] w-full flex flex-col items-center justify-center pt-[100px] relative">
       <motion.div
@@ -41,14 +93,18 @@ const HeroSection: React.FC = () => {
           <input
             type="search"
             id="search"
+            onChange={handleInputChange}
             className="block w-full h-full p-4 ps-10 text-xl text-[#57606F]  border-gray-300 rounded-[20px] outline-none"
             placeholder="Paste your listing URL from any of our supported booking platforms"
             required
           />
           <SearchIcon
-            className="absolute top-[10px] right-[10px]"
+            className="absolute top-[10px] right-[10px] cursor-pointer"
             width={60}
             height={60}
+            onClick={()=> {
+              handleSubmit()
+            }}
           />
         </div>
         <motion.img
