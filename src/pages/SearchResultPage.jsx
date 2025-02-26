@@ -23,7 +23,7 @@ import { useNavigate } from "react-router-dom";
 //     source: "Airbnb",
 //     name: "Stunning rural retreat perfect for couples & dogs",
 //     reviews: {
-//       aggregate_score: "4.9",
+//       aggregate_score || '': "4.9",
 //       total_reviews: "128",
 //       type: 5,
 //     },
@@ -49,7 +49,7 @@ import { useNavigate } from "react-router-dom";
 //         source: "Airbnb",
 //         name: "Stunning rural retreat perfect for couples & dogs",
 //         reviews: {
-//           aggregate_score: "4.9",
+//           aggregate_score || '': "4.9",
 //           total_reviews: "128",
 //           type: 5,
 //         },
@@ -103,14 +103,14 @@ const SearchResultPage = () => {
             </div>
             <div className="xl:flex gap-[10px] justify-center items-center hidden">
               <StarRating
-                score={result?.base_source.reviews.aggregate_score}
-                maxScore={result?.base_source.reviews.type}
+                score={result?.base_source.reviews?.aggregate_score || ''}
+                maxScore={result?.base_source.reviews?.type || 5}
               />
-              <div>{result?.base_source.reviews.aggregate_score}</div>
+              <div>{result?.base_source.reviews?.aggregate_score || ''}</div>
             </div>
             <div className="xl:flex gap-[10px] justify-center items-center hidden">
               <img src={revisionImageUrl} alt="" className="w-4 h-4" />
-              <div>{result?.base_source.reviews.total_reviews} Reviews</div>
+              <div>{result?.base_source.reviews?.total_reviews || ''} Reviews</div>
             </div>
           </div>
           <div className="xl:flex gap-[10px] justify-center items-center hidden">
@@ -181,20 +181,21 @@ const SearchResultPage = () => {
                 <div className="w-fit flex flex-col items-end">
                   <div className="text-base font-semibold text-[#57606F] leading-5">
                     {result?.google_search_result?.Airbnb?.length > 0 &&
-                    result?.google_search_result?.Airbnb[0]?.price.total !== ""
-                      ? result?.google_search_result?.Airbnb[0].price.total
+                    result?.google_search_result?.Airbnb[0]?.price?.total !== ""
+                      ? result?.google_search_result?.Airbnb[0].price?.total
                       : "Not Available"}
                   </div>
                   <div className="text-sm text-[#57606F] leading-5">
                     {result?.google_search_result?.Airbnb?.length > 0 &&
-                    result?.google_search_result?.Airbnb[0]?.price.perNight !==
+                    result?.google_search_result?.Airbnb[0]?.price?.perNight !==
                       ""
-                      ? `${result?.google_search_result?.Airbnb[0].price.perNight}/night`
+                      ? `${result?.google_search_result?.Airbnb[0].price?.perNight}/night`
                       : "Not Available"}
                   </div>
                 </div>
               </div>
               <a
+                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
                 href={
                   result?.google_search_result?.Airbnb?.length > 0 &&
                   result?.google_search_result?.Airbnb[0]?.link !== ""
@@ -202,7 +203,6 @@ const SearchResultPage = () => {
                     : "#"
                 }
                 target="_blank"
-                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
               >
                 {result?.google_search_result?.Airbnb?.length > 0 &&
                 result?.google_search_result?.Airbnb[0]?.link !== ""
@@ -216,20 +216,21 @@ const SearchResultPage = () => {
                 <div className="w-fit flex flex-col items-end">
                   <div className="text-base font-semibold text-[#57606F] leading-5">
                     {result?.google_search_result?.Booking?.length > 0 &&
-                    result?.google_search_result?.Booking[0]?.price.total !== ""
-                      ? result?.google_search_result?.Booking[0].price.total
+                    result?.google_search_result?.Booking[0]?.price?.total !== ""
+                      ? result?.google_search_result?.Booking[0].price?.total
                       : "Not Available"}
                   </div>
                   <div className="text-sm text-[#57606F] leading-5">
                     {result?.google_search_result?.Booking?.length > 0 &&
-                    result?.google_search_result?.Booking[0]?.price.perNight !==
+                    result?.google_search_result?.Booking[0]?.price?.perNight !==
                       ""
-                      ? `${result?.google_search_result?.Booking[0].price.perNight}/night`
+                      ? `${result?.google_search_result?.Booking[0].price?.perNight}/night`
                       : "Not Available"}
                   </div>
                 </div>
               </div>
               <a
+                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
                 href={
                   result?.google_search_result?.Booking?.length > 0 &&
                   result?.google_search_result?.Booking[0]?.link !== ""
@@ -237,7 +238,6 @@ const SearchResultPage = () => {
                     : "#"
                 }
                 target="_blank"
-                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
               >
                 {result?.google_search_result?.Booking?.length > 0 &&
                 result?.google_search_result?.Booking[0]?.link !== ""
@@ -251,19 +251,20 @@ const SearchResultPage = () => {
                 <div className="w-fit flex flex-col items-end">
                   <div className="text-base font-semibold text-[#57606F] leading-5">
                     {result?.google_search_result?.Vrbo?.length > 0 &&
-                    result?.google_search_result?.Vrbo[0]?.price.total !== ""
-                      ? result?.google_search_result?.Vrbo[0].price.total
+                    result?.google_search_result?.Vrbo[0]?.price?.total !== ""
+                      ? result?.google_search_result?.Vrbo[0].price?.total
                       : "Not Available"}
                   </div>
                   <div className="text-sm text-[#57606F] leading-5">
                     {result?.google_search_result?.Vrbo?.length > 0 &&
-                    result?.google_search_result?.Vrbo[0]?.price.perNight !== ""
-                      ? `${result?.google_search_result?.Vrbo[0].price.perNight}/night`
+                    result?.google_search_result?.Vrbo[0]?.price?.perNight !== ""
+                      ? `${result?.google_search_result?.Vrbo[0].price?.perNight}/night`
                       : "Not Available"}
                   </div>
                 </div>
               </div>
               <a
+                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
                 href={
                   result?.google_search_result?.Vrbo?.length > 0 &&
                   result?.google_search_result?.Vrbo[0]?.link !== ""
@@ -271,7 +272,6 @@ const SearchResultPage = () => {
                     : "#"
                 }
                 target="_blank"
-                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
               >
                 {result?.google_search_result?.Vrbo?.length > 0 &&
                 result?.google_search_result?.Vrbo[0]?.link !== ""
@@ -285,20 +285,21 @@ const SearchResultPage = () => {
                 <div className="w-fit flex flex-col items-end">
                   <div className="text-base font-semibold text-[#57606F] leading-5">
                     {result?.google_search_result?.Agoda?.length > 0 &&
-                    result?.google_search_result?.Agoda[0]?.price.total !== ""
-                      ? result?.google_search_result?.Agoda[0].price.total
+                    result?.google_search_result?.Agoda[0]?.price?.total !== ""
+                      ? result?.google_search_result?.Agoda[0].price?.total
                       : "Not Available"}
                   </div>
                   <div className="text-sm text-[#57606F] leading-5">
                     {result?.google_search_result?.Agoda?.length > 0 &&
-                    result?.google_search_result?.Agoda[0]?.price.perNight !==
+                    result?.google_search_result?.Agoda[0]?.price?.perNight !==
                       ""
-                      ? `${result?.google_search_result?.Agoda[0].price.perNight}/night`
+                      ? `${result?.google_search_result?.Agoda[0].price?.perNight}/night`
                       : "Not Available"}
                   </div>
                 </div>
               </div>
               <a
+                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
                 href={
                   result?.google_search_result?.Agoda?.length > 0 &&
                   result?.google_search_result?.Agoda[0]?.link !== ""
@@ -306,7 +307,6 @@ const SearchResultPage = () => {
                     : "#"
                 }
                 target="_blank"
-                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
               >
                 {result?.google_search_result?.Agoda?.length > 0 &&
                 result?.google_search_result?.Agoda[0]?.link !== ""
@@ -320,20 +320,21 @@ const SearchResultPage = () => {
                 <div className="w-fit flex flex-col items-end">
                   <div className="text-base font-semibold text-[#57606F] leading-5">
                     {result?.google_search_result?.Expedia?.length > 0 &&
-                    result?.google_search_result?.Expedia[0]?.price.total !== ""
-                      ? result?.google_search_result?.Expedia[0].price.total
+                    result?.google_search_result?.Expedia[0]?.price?.total !== ""
+                      ? result?.google_search_result?.Expedia[0].price?.total
                       : "Not Available"}
                   </div>
                   <div className="text-sm text-[#57606F] leading-5">
                     {result?.google_search_result?.Expedia?.length > 0 &&
-                    result?.google_search_result?.Expedia[0]?.price.perNight !==
+                    result?.google_search_result?.Expedia[0]?.price?.perNight !==
                       ""
-                      ? `${result?.google_search_result?.Expedia[0].price.perNight}/night`
+                      ? `${result?.google_search_result?.Expedia[0].price?.perNight}/night`
                       : "Not Available"}
                   </div>
                 </div>
               </div>
               <a
+                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
                 href={
                   result?.google_search_result?.Expedia?.length > 0 &&
                   result?.google_search_result?.Expedia[0]?.link !== ""
@@ -341,7 +342,6 @@ const SearchResultPage = () => {
                     : "#"
                 }
                 target="_blank"
-                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
               >
                 {result?.google_search_result?.Expedia?.length > 0 &&
                 result?.google_search_result?.Expedia[0]?.link !== ""
@@ -388,6 +388,7 @@ const SearchResultPage = () => {
                 </div> */}
               </div>
               <a
+                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
                 href={
                   result?.rest_data?.length > 0 &&
                   result?.rest_data[0]?.link !== ""
@@ -395,7 +396,6 @@ const SearchResultPage = () => {
                     : "#"
                 }
                 target="_blank"
-                className="w-[220px] cursor-pointer rounded-[10px] bg-[#FF4757] py-[10px] text-center text-white text-base font-semibold leading-5 xl:block hidden"
               >
                 {result?.rest_data?.length > 0 &&
                 result?.rest_data[0]?.link !== ""
