@@ -16,7 +16,7 @@ const DetailSection: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
             >
-                <div className='flex flex-row md:flex-col justify-center items-center gap-[30px] max-w-[370px]'>
+                <div className='flex md:flex-col justify-center items-center gap-[30px] max-w-[370px]'>
                     <motion.img 
                         src={HomeImageUrl} 
                         alt="" 
@@ -26,7 +26,7 @@ const DetailSection: React.FC = () => {
                     />
                     <div className='text-xl text-center font-semibold text-[#57606F]'>Use your preferred booking platform to find your dream stay</div>
                 </div>
-                <div className='flex flex-row md:flex-col justify-center items-center gap-[30px] max-w-[370px]'>
+                <div className='flex md:flex-col justify-center items-center gap-[30px] max-w-[370px]'>
                     <motion.img 
                         src={SearchEngineImageUrl} 
                         alt="" 
@@ -34,9 +34,9 @@ const DetailSection: React.FC = () => {
                         whileHover={{ scale: 1.1 }}
                         transition={{ type: "spring", stiffness: 300 }}
                     />
-                    <div className='text-xl text-center font-semibold text-[#57606F]'>Copy the URL of your listing, with the dates and criteria entered, and paste into the cheapernights.com search engine</div>
+                    <div className='text-xl text-center font-semibold text-[#57606F]'>Copy the URL of your listing, with the dates and criteria entered, and paste into the search engine</div>
                 </div>
-                <div className='flex flex-row md:flex-col justify-center items-center gap-[30px] max-w-[370px]'>
+                <div className='flex md:flex-col justify-center items-center gap-[30px] max-w-[370px]'>
                     <motion.img 
                         src={RankingImageUrl} 
                         alt="" 
@@ -44,7 +44,7 @@ const DetailSection: React.FC = () => {
                         whileHover={{ scale: 1.1 }}
                         transition={{ type: "spring", stiffness: 300 }}
                     />
-                    <div className='text-xl text-center font-semibold text-[#57606F]'>Select the cheapest booking option available on the internet</div>
+                    <div className='text-xl text-center font-semibold text-[#57606F]'>Select the cheapest booking option available</div>
                 </div>
             </motion.div>
 
@@ -65,13 +65,6 @@ const DetailSection: React.FC = () => {
                 <div>
                     <div className='text-[#57606F] font-semibold text-[36px]'>Get the best price on your vacation rental</div>
                     <div className='text-[#57606F] text-[18px] pt-5'>Save money on your next getaway by finding the best price for your vacation rental. Our tool compares listings across multiple booking platforms like Airbnb, Booking.com, and Vrbo, helping you discover where the same rental is available for less. Don't overpay—get the best deal with ease!</div>
-                    <motion.div 
-                        className='w-fit mt-10 text-center text-[18px] font-semibold py-[10px] px-20 bg-[#FF4757] text-white rounded-[10px]'
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Learn more
-                    </motion.div>
                 </div>
             </motion.div>
 
@@ -83,8 +76,8 @@ const DetailSection: React.FC = () => {
                 transition={{ duration: 0.8 }}
             >
                 <div>
-                    <div className='text-[#57606F] font-semibold text-[36px]'>Save money by using with cheapernights.com</div>
-                    <div className='text-[#57606F] text-[18px] pt-5'>Save money on your vacation rental by using Cheapernights! Our powerful comparison tool helps you find the best price by checking listings across multiple booking platforms like Airbnb, Booking.com, and Vrbo. Simply paste the rental URL, and we’ll show you where to book for less—so you can enjoy more and spend less on your next trip!</div>
+                    <div className='text-[#57606F] font-semibold text-[36px]'>Simple and intuitive to use</div>
+                    <div className='text-[#57606F] text-[18px] pt-5'>Once you have found your dream vacation rental and entered your dates on any of our supported booking platforms, copy and paste the URL into the Cheapernights.com search engine. Our powerful comparison tool helps you find the best price by checking listings across multiple booking platforms like Airbnb, Booking.com, and Vrbo</div>
                 </div>
                 <motion.img 
                     src={SecondDetailImageUrl} 

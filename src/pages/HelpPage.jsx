@@ -23,7 +23,7 @@ const HelpPage = () => {
       >
         Help
       </motion.div>
-      <div className="w-full flex justify-between items-center md:mb-[80px] mb-[60px]">
+      {/* <div className="w-full flex justify-between items-center md:mb-[80px] mb-[60px]">
         <motion.div 
           className="flex flex-col justify-center items-center"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -75,8 +75,8 @@ const HelpPage = () => {
             <br className="block md:hidden" /> FAQ
           </div>
         </motion.div>
-      </div>
-      <motion.h2 
+      </div> */}
+      {/* <motion.h2 
         className="w-full md:text-center md:text-4xl text-[24px] text-[#57606F] font-semibold md:mb-[60px] mb-[30px]"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ const HelpPage = () => {
         transition={{ duration: 0.8 }}
       >
         General questions
-      </motion.h2>
+      </motion.h2> */}
       <div className="faq-list space-y-4 w-full border-t pt-4">
         {faqs.map((faq, index) => (
           <motion.div 
