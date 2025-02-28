@@ -8,6 +8,11 @@ import SearchIcon from "./icons/searchIcon";
 import axios from "axios";
 import { useSearchContext } from "../context/SearchContext";
 import { useNavigate } from "react-router-dom";
+const airbnbImageUrl = "/assets/images/icons/airbnb.png";
+const bookingImageUrl = "/assets/images/icons/booking.png";
+const vrboImageUrl = "/assets/images/icons/vrbo.png";
+const agodaImageUrl = "/assets/images/icons/agoda.png";
+const expediaImageUrl = "/assets/images/icons/expedia.png";
 
 const HeroSection = () => {
   const navigate = useNavigate()
@@ -107,22 +112,20 @@ const HeroSection = () => {
             }}
           />
         </div>
-        <motion.img
-          src={SiteListImageUrl}
-          alt=""
-          className="mt-[20px] w-[1120px] h-[140px] md:block hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        />
-        <motion.img
-          src={SiteListMobileImageUrl}
-          alt=""
-          className="mt-[20px] w-[360px] h-[155px] block md:hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        />
+        <div className="w-full flex flex-col justify-center items-center mt-[46px]">
+          <div className="lg:text-lg text-sm font-semibold lg:mb-[15px] mb-[10px] text-white">Platforms supported by cheapernights.com</div>
+          <div className="lg:max-w-[1130px] max-w-[360px] flex justify-center xl:gap-[55px] gap-[20px] lg:py-[30px] lg:px-[60px] py-[20px] px-[20px]  bg-white rounded-[20px] shadow-sm flex-wrap">
+            <img src={airbnbImageUrl} alt="" className="lg:h-[40px] h-[30px] w-auto" />
+            <div className="border-l-[1px] border-[#DFE4EA]"></div>
+            <img src={bookingImageUrl} alt="" className="lg:h-[40px] h-[30px] w-auto" />
+            <div className="border-l-[1px] border-[#DFE4EA] lg:block hidden"></div>
+            <img src={vrboImageUrl} alt="" className="lg:h-[40px] h-[30px] w-auto" />
+            <div className="border-l-[1px] border-[#DFE4EA]"></div>
+            <img src={agodaImageUrl} alt="" className="lg:h-[40px] h-[30px] w-auto" />
+            <div className="border-l-[1px] border-[#DFE4EA]"></div>
+            <img src={expediaImageUrl} alt="" className="lg:h-[40px] h-[30px] w-auto" />
+          </div>
+        </div>
       </motion.div>
     </div>
   );
