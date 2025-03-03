@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-const HeroImageUrl = "/assets/images/hero-image.png";
-const SiteListImageUrl = "/assets/images/site-list.png";
-const SiteListMobileImageUrl = "/assets/images/site-list-mobile.png";
-import SearchIcon from "./icons/searchIcon";
 import axios from "axios";
 import { useSearchContext } from "../context/SearchContext";
 import { useNavigate } from "react-router-dom";
+import SearchIcon from "./icons/searchIcon";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css"; // Import Toastr CSS
+
+const HeroImageUrl = "/assets/images/hero-image.png";
 const airbnbImageUrl = "/assets/images/icons/airbnb.png";
 const bookingImageUrl = "/assets/images/icons/booking.png";
 const vrboImageUrl = "/assets/images/icons/vrbo.png";
@@ -15,10 +15,11 @@ const agodaImageUrl = "/assets/images/icons/agoda.png";
 const expediaImageUrl = "/assets/images/icons/expedia.png";
 
 const HeroSection = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [ipAddress, setIpAddress] = useState(null);
   const [url, setUrl] = useState("");
-  const { setIsLoading, setError, setResult } = useSearchContext(); 
+  const { setIsLoading, setError, setResult } = useSearchContext();
+
   const handleInputChange = (e) => {
     setUrl(e.target.value);
   };
@@ -37,8 +38,13 @@ const HeroSection = () => {
     fetchIpAddress();
   }, []);
 
+  const isValidUrl = (url) => {
+    const urlPattern = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(\/[^\s?#]*)?(\?[^#]*)?(#.*)?$/;
+    return urlPattern .test(url);
+  };
+
   const handleSubmit = async (e) => {
-    if (url) {
+    if (url && isValidUrl(url)) {
       setIsLoading(true);
       try {
         const response = await axios.post(
@@ -48,19 +54,23 @@ const HeroSection = () => {
             ipAddress: ipAddress,
           }
         );
-        if (response.data.status == "success") {
+        if (response.data.status === "success") {
           setResult(response.data);
           navigate("/searchResult");
         } else {
           setResult(null);
         }
-        setError('');
+        setError("");
         setIsLoading(false);
       } catch (error) {
-        setError("There was an error making the request"); // Set error message
+        setError("There was an error making the request");
         setIsLoading(false);
         console.error("There was an error making the request:", error);
       }
+    } else {
+      console.log("Please enter a valid URL");
+      toastr.error("Please enter a valid URL");
+      setError("Please enter a valid URL");
     }
   };
 
@@ -99,31 +109,59 @@ const HeroSection = () => {
             type="search"
             id="search"
             onChange={handleInputChange}
-            className="block w-full h-full p-4 ps-10 text-xl text-[#57606F]  border-gray-300 rounded-[20px] outline-none"
+            className="w-full h-full p-4 ps-10 text-xl md:block hidden text-[#57606F]  border-gray-300 rounded-[20px] outline-none"
             placeholder="Paste your listing URL from any of our supported booking platforms"
+            required
+          />
+          <input
+            type="search"
+            id="search"
+            onChange={handleInputChange}
+            className="block md:hidden w-full h-full p-4 ps-10 text-sm text-[#57606F]  border-gray-300 rounded-[20px] outline-none"
+            placeholder="Paste your listing URL"
             required
           />
           <SearchIcon
             className="absolute top-[10px] right-[10px] cursor-pointer"
             width={60}
             height={60}
-            onClick={()=> {
-              handleSubmit()
-            }}
+            onClick={handleSubmit}
           />
         </div>
         <div className="w-full flex flex-col justify-center items-center mt-[46px]">
-          <div className="lg:text-lg text-sm font-semibold lg:mb-[15px] mb-[10px] text-white">Platforms supported by cheapernights.com</div>
+          <div className="lg:text-lg text-sm font-semibold lg:mb-[15px] mb-[10px] text-white">
+            Platforms supported by cheapernights.com
+          </div>
           <div className="lg:max-w-[1130px] max-w-[360px] flex justify-center xl:gap-[55px] gap-[20px] lg:py-[30px] lg:px-[60px] py-[20px] px-[20px]  bg-white rounded-[20px] shadow-sm flex-wrap">
-            <img src={airbnbImageUrl} alt="" className="lg:h-[40px] h-[30px] w-auto" />
+            <img
+              src={airbnbImageUrl}
+              alt=""
+              className="lg:h-[40px] h-[30px] w-auto"
+            />
             <div className="border-l-[1px] border-[#DFE4EA]"></div>
-            <img src={bookingImageUrl} alt="" className="lg:h-[40px] h-[30px] w-auto" />
+            <img
+              src={bookingImageUrl}
+              alt=""
+              className="lg:h-[40px] h-[30px] w-auto"
+            />
             <div className="border-l-[1px] border-[#DFE4EA] lg:block hidden"></div>
-            <img src={vrboImageUrl} alt="" className="lg:h-[40px] h-[30px] w-auto" />
+            <img
+              src={vrboImageUrl}
+              alt=""
+              className="lg:h-[40px] h-[30px] w-auto"
+            />
             <div className="border-l-[1px] border-[#DFE4EA]"></div>
-            <img src={agodaImageUrl} alt="" className="lg:h-[40px] h-[30px] w-auto" />
+            <img
+              src={agodaImageUrl}
+              alt=""
+              className="lg:h-[40px] h-[30px] w-auto"
+            />
             <div className="border-l-[1px] border-[#DFE4EA]"></div>
-            <img src={expediaImageUrl} alt="" className="lg:h-[40px] h-[30px] w-auto" />
+            <img
+              src={expediaImageUrl}
+              alt=""
+              className="lg:h-[40px] h-[30px] w-auto"
+            />
           </div>
         </div>
       </motion.div>
