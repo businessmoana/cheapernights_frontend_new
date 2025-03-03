@@ -4,8 +4,7 @@ import axios from "axios";
 import { useSearchContext } from "../context/SearchContext";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "./icons/searchIcon";
-import toastr from "toastr";
-import "toastr/build/toastr.min.css"; // Import Toastr CSS
+import { toast } from "react-toastify";
 
 const HeroImageUrl = "/assets/images/hero-image.png";
 const airbnbImageUrl = "/assets/images/icons/airbnb.png";
@@ -69,7 +68,15 @@ const HeroSection = () => {
       }
     } else {
       console.log("Please enter a valid URL");
-      toastr.error("Please enter a valid URL");
+      toast.error('Please enter a valid URL', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setError("Please enter a valid URL");
     }
   };

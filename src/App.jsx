@@ -11,10 +11,14 @@ import TermServicePage from "./pages/TermServicePage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import PageNotFound from "./components/PageNotFound";
 import { SearchProvider } from "./context/SearchContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
     <SearchProvider>
       <Router>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/searchResult" element={<SearchResultPage />} />

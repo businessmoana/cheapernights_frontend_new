@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
-import toastr from "toastr";
-import "toastr/build/toastr.min.css"; // Import Toastr CSS
+import { toast } from "react-toastify";
 
 const ContactUsPage = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +26,15 @@ const ContactUsPage = () => {
         `${import.meta.env.VITE_API_URL}/send-mail`,
         formData
       );
-      toastr.success("Your message has been sent successfully!");
+      toast.success('Your message has been sent successfully!', {
+        position: "top-right",
+        autoClose: 5000, // Close after 5 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setFormData({
         firstName: "",
         lastName: "",
@@ -36,9 +43,15 @@ const ContactUsPage = () => {
       });
     } catch (error) {
       console.error("Error:", error);
-      toastr.error(
-        "There was an error sending your message. Please try again."
-      );
+      toast.error("There was an error sending your message. Please try again.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
