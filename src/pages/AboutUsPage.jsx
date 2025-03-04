@@ -54,18 +54,6 @@ const AboutUsPage = () => {
               between platforms, or allowing guests to book directly with hosts
             </div>
           </motion.div>
-          <motion.div
-            className="md:text-[24px] text-[18px]"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Founded by vacation rental owners who were losing out on income from
-            the 15-25% in commissions charged by booking platforms,
-            cheapernights.com is the only comprehensive price checking
-            application on the internet today.
-          </motion.div>
         </div>
       </div>
       <GotQuestion />
