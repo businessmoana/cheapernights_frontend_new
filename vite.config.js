@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import {searchForWorkspaceRoot , defineConfig } from 'vite';
 
 export default defineConfig({
     server: {
@@ -6,8 +6,8 @@ export default defineConfig({
         port: 5173, // Default port; change if needed
         fs: {
             allow: [
-                '/home/azureuser/cheapernights_frontend_new/public', // Only allow the public directory
-                '/home/azureuser/cheapernights_frontend_new/src', // Allow the src directory if needed
+                searchForWorkspaceRoot(process.cwd()),
+                '/home/azureuser/cheapernights_frontend_new', // Only allow the public directory
               ],
         },
     }
